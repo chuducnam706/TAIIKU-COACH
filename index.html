@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAIIKU TEACHER - Đào tạo & Phát triển Năng lực Giáo viên Thể chất (Sakura Kids)</title>
+  <meta name="description" content="TAIIKU TEACHER - SK Taiiku Teacher Academy: Hệ thống đào tạo, thực hành, đánh giá và chuẩn hóa năng lực giáo viên thể chất mầm non.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">TAIIKU TEACHER</span>
+          <span class="brand-sub">Đào Tạo & Phát Triển Giáo Viên (Sakura Kids)</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <div class="nav-section-label">HỒ SƠ & PHÁT TRIỂN</div>
+        <button class="nav-item active" data-tab="teacher-dashboard">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Hồ Sơ Năng Lực 360°</span>
+          <span class="badge badge-teal">Level 2</span>
+        </button>
+
+        <div class="nav-section-label">ĐÀO TẠO & THỰC HÀNH</div>
+        <button class="nav-item" data-tab="training-hub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Kho Đào Tạo & Quiz</span>
+          <span class="badge badge-blue">3 Nhóm</span>
+        </button>
+
+        <button class="nav-item" data-tab="practice-upload">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          <span>Xem - Làm theo - Tự quay</span>
+          <span class="badge badge-purple">AI Check</span>
+        </button>
+
+        <div class="nav-section-label">QUẢN TRỊ & HỖ TRỢ</div>
+        <button class="nav-item" data-tab="manager-hub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Quản Lý & Cảnh Báo</span>
+          <span class="badge badge-red" id="sidebar-alert-badge">3</span>
+        </button>
+
+        <button class="nav-item" data-tab="ai-coach">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>Trợ Lý Sư Phạm AI</span>
+          <span class="badge badge-neon">24/7</span>
+        </button>
+      </nav>
+
+      <!-- Active User Card in Sidebar -->
+      <div class="user-card-bottom" id="sidebar-user-card" style="cursor: pointer;" title="Bấm để đăng nhập hoặc đổi tài khoản">
+        <div class="user-avatar" id="current-user-avatar">KT</div>
+        <div class="user-info">
+          <span class="user-name" id="current-user-name">Kenji Tanaka (Sensei Cường)</span>
+          <span class="user-role-text" id="current-user-role">🌳 M3: Thành Thạo (SK-1)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Bar Header -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="breadcrumb-tag">HỆ THỐNG QUẢN TRỊ NĂNG LỰC GIÁO VIÊN THEO VÒNG ĐỜI</div>
+          <h1 class="page-title" id="page-title">Hồ Sơ Năng Lực Số & Trung Tâm Phát Triển</h1>
+          <p class="page-desc" id="page-subtitle">Học → Xem → Thực Hành → Quay Video → Đánh Giá → Phản Hồi → Cải Thiện → Xác Nhận Đạt Chuẩn</p>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Role Switcher -->
+          <div class="role-switcher">
+            <span class="role-label">Chế độ xem:</span>
+            <div class="role-toggle-group">
+              <button class="role-btn active" data-role="teacher">👨‍🏫 Giáo Viên</button>
+              <button class="role-btn" data-role="manager">🧑‍💼 Quản Lý CS</button>
+              <button class="role-btn" data-role="trainer">🎓 Master Trainer</button>
+              <button class="role-btn" data-role="admin">👑 Admin</button>
+            </div>
+          </div>
+
+          <button class="btn btn-outline btn-sm" id="btn-open-login-modal" style="display: inline-flex; align-items: center; gap: 6px; font-weight: 700;">
+            <span>🔑 Đăng Nhập / Đổi GV</span>
+          </button>
+
+          <button class="btn btn-primary" id="btn-open-certificate">
+            <span>🏅 Chứng Chỉ Điện Tử</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- TAB 1: TEACHER DASHBOARD (LEVEL 1, 3, 4, IDP, TIMELINE) -->
+      <section class="tab-pane active" id="tab-teacher-dashboard">
+        
+        <!-- 1. HERO DIGITAL COMPETENCY PROFILE CARD -->
+        <div class="hero-profile-card">
+          <div class="hero-profile-content">
+            <div class="avatar-large" id="hero-teacher-avatar">
+              <span>KT</span>
+              <div class="status-indicator online"></div>
+            </div>
+            <div class="hero-details">
+              <div class="hero-name-row">
+                <h2 id="hero-teacher-name">Kenji Tanaka (Sensei Cường)</h2>
+                <span class="badge-level-pill active-level" id="hero-teacher-level">🌳 M3: Thành Thạo</span>
+                <span class="badge-cluster-pill" id="hero-teacher-branch">Sakura Kids • Cơ Sở SK-1</span>
+              </div>
+              <p class="hero-bio" id="hero-teacher-bio">Phụ trách: <strong>Lớp Mầm Vành Khuyên (3-4 tuổi)</strong> & <strong>Lớp Chồi Sao Mai (4-5 tuổi)</strong> • Hệ thống Sakura Kids</p>
+              
+              <!-- 4-Level Progress Bar Indicator (M1 -> M4) -->
+              <div class="level-stepper-box" id="hero-level-stepper">
+                <div class="level-step done" id="step-m1">
+                  <span class="step-icon">🌱</span>
+                  <span class="step-text">M1: Làm Quen</span>
+                </div>
+                <div class="step-divider active" id="div-m1-m2"></div>
+                <div class="level-step done" id="step-m2">
+                  <span class="step-icon">🌿</span>
+                  <span class="step-text">M2: Đạt Chuẩn</span>
+                </div>
+                <div class="step-divider active" id="div-m2-m3"></div>
+                <div class="level-step current" id="step-m3">
+                  <span class="step-icon">🌳</span>
+                  <span class="step-text">M3: Thành Thạo</span>
+                  <span class="current-tag">Hiện tại ★</span>
+                </div>
+                <div class="step-divider" id="div-m3-m4"></div>
+                <div class="level-step lock" id="step-m4">
+                  <span class="step-icon">⭐</span>
+                  <span class="step-text">M4: HLV Mẫu</span>
+                </div>
+              </div>
+
+              <!-- Next IDP Focus Alert Callout -->
+              <div class="idp-focus-callout">
+                <div class="idp-callout-icon">🎯</div>
+                <div>
+                  <h4 class="idp-callout-title">Năng Lực Trọng Tâm Cần Phát Triển Tiếp Theo:</h4>
+                  <p class="idp-callout-desc" id="hero-idp-desc"><strong>Khẩu lệnh còi dứt khoát</strong> + <strong>Kỹ thuật sửa sai trực tiếp</strong> + <strong>Đỡ an toàn xà đơn</strong> (Kế hoạch đào tạo 4 tuần đang diễn ra).</p>
+                </div>
+              </div>
+
+              <!-- Meta specs -->
+              <div class="hero-meta-grid">
+                <div class="meta-item">
+                  <span class="meta-label">Mã Giáo Viên</span>
+                  <span class="meta-val font-mono" id="hero-teacher-code">SKT-2026-88204</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Chứng chỉ CPR / Sơ Cứu</span>
+                  <span class="meta-val text-success" id="hero-teacher-cpr">Còn hạn (140 ngày)</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Dự giờ chính thức</span>
+                  <span class="meta-val text-neon" id="hero-teacher-audit">2/2 đợt đã thẩm định</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Huy hiệu đạt được</span>
+                  <span class="meta-val" id="hero-teacher-badge-count">6 Huy hiệu chuyên môn</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Index Score Widget -->
+          <div class="hero-score-badge">
+            <div class="score-circle">
+              <span class="score-num" id="hero-teacher-score">88.5</span>
+              <span class="score-max">/100</span>
+            </div>
+            <span class="score-label">Điểm Năng Lực Tổng (Index)</span>
+            <span class="score-status text-neon" id="hero-teacher-trend">🟢 Tăng +10.0đ (Tiến Bộ)</span>
+            <button class="btn btn-sm btn-outline-white" id="hero-view-cert-btn">Xem Chứng Nhận QR</button>
+          </div>
+        </div>
+
+        <!-- 2. GAMIFICATION & WEEKLY MISSIONS (NHIỆM VỤ TUẦN) -->
+        <div class="gamification-grid">
+          <!-- Streak & XP Card -->
+          <div class="game-card streak-card">
+            <div class="game-card-header">
+              <div>
+                <span class="game-sub">ĐỘNG LỰC RÈN LUYỆN</span>
+                <h4 class="game-title">Chuỗi Ngày Đào Tạo</h4>
+              </div>
+              <div class="fire-badge">🔥 5 Ngày Liên Tục</div>
+            </div>
+            <div class="streak-dots-row">
+              <div class="s-dot active"><span>T2</span><div class="s-check">✓</div></div>
+              <div class="s-dot active"><span>T3</span><div class="s-check">✓</div></div>
+              <div class="s-dot active"><span>T4</span><div class="s-check">✓</div></div>
+              <div class="s-dot active"><span>T5</span><div class="s-check">✓</div></div>
+              <div class="s-dot active today"><span>T6</span><div class="s-check">★</div></div>
+              <div class="s-dot"><span>T7</span></div>
+              <div class="s-dot"><span>CN</span></div>
+            </div>
+            <div class="xp-stat-row">
+              <span>⭐ Điểm rèn luyện: <strong>1,420 XP</strong></span>
+              <span>🏆 Hạng danh dự: <strong>Bậc Thầy Bục Nhảy</strong></span>
+            </div>
+          </div>
+
+          <!-- Weekly Missions Checklist Card -->
+          <div class="game-card mission-card">
+            <div class="game-card-header">
+              <div>
+                <span class="game-sub">MỤC TIÊU TUẦN NÀY (HỌC → LÀM → ĐÁNH GIÁ)</span>
+                <h4 class="game-title">Nhiệm Vụ Tuần (3/4 Hoàn Thành)</h4>
+              </div>
+              <span class="mission-progress-tag">75% Đạt</span>
+            </div>
+            <div class="mission-list">
+              <label class="mission-item done">
+                <input type="checkbox" checked disabled>
+                <span class="m-check-custom">✓</span>
+                <span class="m-text">Xem 2 video chuẩn kỹ thuật tiếp đất Ukemi</span>
+                <span class="m-reward">+50 XP</span>
+              </label>
+
+              <label class="mission-item done">
+                <input type="checkbox" checked disabled>
+                <span class="m-check-custom">✓</span>
+                <span class="m-text">Hoàn thành 1 bài kiểm tra lý thuyết khẩu lệnh</span>
+                <span class="m-reward">+100 XP</span>
+              </label>
+
+              <label class="mission-item done">
+                <input type="checkbox" checked disabled>
+                <span class="m-check-custom">✓</span>
+                <span class="m-text">Giải quyết 1 mô phỏng tình huống: Trẻ 3 tuổi sợ nhảy</span>
+                <span class="m-reward">+120 XP</span>
+              </label>
+
+              <label class="mission-item pending" onclick="window.switchTab('practice-upload')">
+                <input type="checkbox">
+                <span class="m-check-custom">○</span>
+                <span class="m-text"><strong>Quay 1 video kỹ thuật:</strong> Bật nhảy bục 4 tầng & đỡ spotting</span>
+                <span class="m-action-btn">Thực hiện ngay ➔</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. THREE CORE METRICS (HOÀN THÀNH, TIẾN BỘ, KHÓA HỌC) -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Tiến Độ Đào Tạo Toàn Diện</span>
+              <div class="kpi-icon blue">📚</div>
+            </div>
+            <div class="kpi-val">87.5% Hoàn Tất</div>
+            <div class="kpi-sub">14 / 16 Mô-đun tiêu chuẩn SK Taiiku đã qua kiểm tra</div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 87.5%"></div></div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Biến Động Năng Lực (Kỳ 1 ➔ Kỳ 2)</span>
+              <div class="kpi-icon green">📈</div>
+            </div>
+            <div class="kpi-val text-success">78.5 ➔ 88.5 (+10.0đ)</div>
+            <div class="kpi-sub">Khẩu lệnh (+14đ), Điều phối (+13đ), An toàn (+4đ)</div>
+            <div class="trend-indicator-row">
+              <span class="trend-tag success">🟢 Tiến Bộ Vượt Bậc</span>
+              <span class="trend-tag">Chu kỳ năm học 2026</span>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Khóa Học Đang Theo Học</span>
+              <div class="kpi-icon teal">🏃</div>
+            </div>
+            <div class="kpi-val">2 Khóa Đang Diễn Ra</div>
+            <div class="kpi-sub">Nhảy bục 4 tầng (50%) & Phân làn học sinh (80%)</div>
+            <div class="course-quick-actions">
+              <button class="btn btn-xs btn-outline" onclick="window.switchTab('training-hub')">Tiếp Tục Học ➔</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. RADAR 360° & CRITERIA PERFORMANCE BREAKDOWN -->
+        <div class="dashboard-split-grid">
+          <!-- 6-Competency Radar Chart (Taiiku Framework) -->
+          <div class="card radar-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Bản Đồ 6 Nhóm Năng Lực Giáo Viên Taiiku (M1 – M4)</h3>
+                <p class="card-subtitle">Đánh giá theo 6 trục năng lực cốt lõi bởi Ban Chuyên Môn & AI Pose Vision</p>
+              </div>
+              <span class="badge-tag">Khung Chuẩn Sakura Kids</span>
+            </div>
+            
+            <div class="radar-container">
+              <canvas id="radarChartCanvas" width="400" height="320"></canvas>
+            </div>
+
+            <!-- Detailed 6-Competency Table -->
+            <div class="competency-table-box">
+              <table class="comp-mini-table">
+                <thead>
+                  <tr>
+                    <th>Nhóm Năng Lực</th>
+                    <th>Điểm</th>
+                    <th>Cấp Độ</th>
+                    <th>Nhận Xét Trọng Tâm</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>01. Kiến Thức Vận Động Mầm Non</strong></td>
+                    <td><span class="score-pill text-success">88đ</span></td>
+                    <td><span class="badge-m3">M3: Thành Thạo</span></td>
+                    <td>Hiểu sâu chương trình, tâm sinh lý vận động trẻ 2–6 tuổi.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>02. Kỹ Năng Vận Động Chuẩn</strong></td>
+                    <td><span class="score-pill text-success">88đ</span></td>
+                    <td><span class="badge-m3">M3: Thành Thạo</span></td>
+                    <td>Kỹ thuật động tác chuẩn xác: chạy, nhảy, leo, thăng bằng, nhào lộn.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>03. Kỹ Năng Hướng Dẫn & Thị Phạm</strong></td>
+                    <td><span class="score-pill text-warning">78đ</span></td>
+                    <td><span class="badge-m2">M2: Đạt (Cần IDP)</span></td>
+                    <td>Khẩu lệnh còi dứt khoát, thị phạm mẫu; cần sửa sai nhanh cho trẻ.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>04. Tổ Chức Lớp & Mạch Vận Động</strong></td>
+                    <td><span class="score-pill">85đ</span></td>
+                    <td><span class="badge-m3">M3: Thành Thạo</span></td>
+                    <td>Đội hình, luân chuyển trạm liên tục, không để học sinh chờ đợi lâu.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>05. Bảo Đảm An Toàn & Spotting</strong></td>
+                    <td><span class="score-pill text-success">94đ</span></td>
+                    <td><span class="badge-m3">M3: Thành Thạo</span></td>
+                    <td>Nhận diện rủi ro, vị trí đón đỡ spotting chống rơi xà xuất sắc.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>06. Sư Phạm Taiiku (Tâm – Thân – Trí)</strong></td>
+                    <td><span class="score-pill text-success">95đ</span></td>
+                    <td><span class="badge-m4">M4: HLV Mẫu</span></td>
+                    <td>Tôn trọng cảm xúc trẻ, khích lệ trẻ nhút nhát vượt qua nỗi sợ.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Performance Fluctuation & Individual Development Plan (IDP) -->
+          <div class="right-col-stack">
+            <!-- Performance Fluctuation Analysis -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">📈 Biến Động Năng Lực & Phân Tích Nguyên Nhân</h3>
+                  <p class="card-subtitle">Vì sao điểm năng lực tổng thay đổi từ 78.5 lên 88.5?</p>
+                </div>
+                <span class="badge badge-teal">Tiến Bộ +10.0đ</span>
+              </div>
+
+              <!-- Mini Line Canvas -->
+              <div class="trend-canvas-box">
+                <div class="trend-header-row">
+                  <span class="canvas-label">Biểu đồ tiến bộ 6 tháng (Kỳ 1 ➔ Kỳ 2):</span>
+                  <span class="trend-score-now">88.5 Điểm</span>
+                </div>
+                <canvas id="trendChartCanvas" width="380" height="80"></canvas>
+              </div>
+
+              <!-- Detailed Score Shifts -->
+              <div class="score-shifts-grid">
+                <div class="shift-item">
+                  <span class="shift-name">Khẩu lệnh</span>
+                  <span class="shift-val text-success">68 ➔ 82 (+14đ)</span>
+                  <span class="shift-reason">Học xong khóa Còi Tsubasa</span>
+                </div>
+                <div class="shift-item">
+                  <span class="shift-name">Điều phối lớp</span>
+                  <span class="shift-val text-success">72 ➔ 85 (+13đ)</span>
+                  <span class="shift-reason">Áp dụng sơ đồ 2 làn luân phiên</span>
+                </div>
+                <div class="shift-item">
+                  <span class="shift-name">Làm mẫu</span>
+                  <span class="shift-val text-success">85 ➔ 88 (+3đ)</span>
+                  <span class="shift-reason">Tự quay video soi góc tiếp đất</span>
+                </div>
+                <div class="shift-item">
+                  <span class="shift-name">An toàn</span>
+                  <span class="shift-val text-success">90 ➔ 94 (+4đ)</span>
+                  <span class="shift-reason">Checklist spotting vững vàng</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Individual Development Plan (IDP) -->
+            <div class="card idp-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">🎯 Kế Hoạch Phát Triển Cá Nhân (IDP)</h3>
+                  <p class="card-subtitle">Mục tiêu chuẩn hóa để nâng cấp lên Level 3: Thành Thạo 🌳</p>
+                </div>
+                <span class="idp-target-tag">Mục Tiêu: 92.0+</span>
+              </div>
+
+              <div class="idp-goals-list">
+                <div class="idp-goal">
+                  <div class="goal-title-row">
+                    <span class="goal-title">Mục tiêu 1: Cải thiện dứt khoát khẩu lệnh còi ngoài trời (82đ ➔ 90đ)</span>
+                    <span class="goal-badge in-progress">Đang thực hiện (75%)</span>
+                  </div>
+                  <div class="goal-actions">
+                    <div class="action-row done">✓ Đã hoàn thành khóa lý thuyết Khẩu lệnh SK Taiiku</div>
+                    <div class="action-row done">✓ Xem 3 video mẫu còi phân nhịp khi lớp ồn ào</div>
+                    <div class="action-row in-progress">➔ Đang thực hành nộp video khẩu lệnh ngoài sân</div>
+                    <div class="action-row pending">○ Dự giờ thẩm định lại vào tháng 11/2026</div>
+                  </div>
+                </div>
+
+                <div class="idp-goal">
+                  <div class="goal-title-row">
+                    <span class="goal-title">Mục tiêu 2: Hoàn thiện kỹ thuật đỡ lộn nhào (Forward Roll) cho bé 3 tuổi</span>
+                    <span class="goal-badge done">Đạt 100%</span>
+                  </div>
+                  <div class="goal-actions">
+                    <div class="action-row done">✓ Đã được AI Vision chấm 94/100 điểm an toàn cổ</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. TEACHER TIMELINE (TRỤC THỜI GIAN PHÁT TRIỂN NGHỀ NGHIỆP) -->
+        <div class="card timeline-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">⏳ Trục Thời Gian Phát Triển Nghề Nghiệp (Teacher Timeline)</h3>
+              <p class="card-subtitle">Hồ sơ vòng đời: Toàn bộ quá trình từ khi nhận việc đến đạt chuẩn năng lực hiện tại</p>
+            </div>
+            <span class="badge badge-purple">Năm Học 2026</span>
+          </div>
+
+          <div class="timeline-horizontal-scroll">
+            <div class="timeline-track">
+              
+              <!-- Timeline Milestone 1 -->
+              <div class="timeline-milestone done">
+                <div class="milestone-dot">✓</div>
+                <div class="milestone-content">
+                  <span class="milestone-date">01/2026</span>
+                  <h4 class="milestone-title">Nhận Việc & Khảo Sát Ban Đầu</h4>
+                  <p class="milestone-desc">Đánh giá năng lực đầu vào: <strong>68.0 điểm</strong>. Nhận diện các điểm cần đào tạo về phương pháp Taiiku.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Milestone 2 -->
+              <div class="timeline-milestone done">
+                <div class="milestone-dot">✓</div>
+                <div class="milestone-content">
+                  <span class="milestone-date">03/2026</span>
+                  <h4 class="milestone-title">Hoàn Thành Khóa Cơ Bản 🌱</h4>
+                  <p class="milestone-desc">Đạt 82% bài test trắc nghiệm Tâm - Thân - Trí và kỹ thuật sơ cấp cứu CPR.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Milestone 3 -->
+              <div class="timeline-milestone done">
+                <div class="milestone-dot">✓</div>
+                <div class="milestone-content">
+                  <span class="milestone-date">05/2026</span>
+                  <h4 class="milestone-title">Dự Giờ Đợt 1 (Đạt 78.5đ)</h4>
+                  <p class="milestone-desc">Ban chuyên môn dự giờ tiết Nhảy bục. Ghi nhận an toàn tốt nhưng khẩu lệnh còn nhỏ.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Milestone 4 -->
+              <div class="timeline-milestone done">
+                <div class="milestone-dot">✓</div>
+                <div class="milestone-content">
+                  <span class="milestone-date">07/2026</span>
+                  <h4 class="milestone-title">Đào Tạo Bổ Sung & Tự Quay Video</h4>
+                  <p class="milestone-desc">Nộp 3 video thực hành làm mẫu bật xa và khẩu lệnh. Được AI Vision & Master Coach chấm đạt.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Milestone 5 -->
+              <div class="timeline-milestone active-now">
+                <div class="milestone-dot now">★</div>
+                <div class="milestone-content">
+                  <span class="milestone-date">09/2026 (Hiện Tại)</span>
+                  <h4 class="milestone-title">Dự Giờ Đợt 2: Đạt 88.5đ 🌿</h4>
+                  <p class="milestone-desc">Tiến bộ +10.0đ. Chính thức cấp <strong>Chứng Nhận Giáo Viên Thực Hành (Level 2)</strong>.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Milestone 6 -->
+              <div class="timeline-milestone future">
+                <div class="milestone-dot future">🔒</div>
+                <div class="milestone-content">
+                  <span class="milestone-date">11/2026 (Dự Kiến)</span>
+                  <h4 class="milestone-title">Thẩm Định Lên Level 3 🌳</h4>
+                  <p class="milestone-desc">Mục tiêu đạt 92+ điểm để trở thành Giáo viên Thành Thạo & Đào tạo người mới.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- TAB 2: TRAINING HUB & 7-STEP LEARNING CYCLE -->
+      <section class="tab-pane" id="tab-training-hub">
+        
+        <!-- 7-Step Course Learning Cycle Banner -->
+        <div class="cycle-steps-banner">
+          <div class="cycle-step-item active">
+            <div class="cycle-step-num">1</div>
+            <div class="cycle-step-name">① KIẾN THỨC</div>
+          </div>
+          <div class="cycle-step-arrow">➔</div>
+          <div class="cycle-step-item active">
+            <div class="cycle-step-num">2</div>
+            <div class="cycle-step-name">② VIDEO MẪU</div>
+          </div>
+          <div class="cycle-step-arrow">➔</div>
+          <div class="cycle-step-item active">
+            <div class="cycle-step-num">3</div>
+            <div class="cycle-step-name">③ QUAN SÁT</div>
+          </div>
+          <div class="cycle-step-arrow">➔</div>
+          <div class="cycle-step-item active">
+            <div class="cycle-step-num">4</div>
+            <div class="cycle-step-name">④ KIỂM TRA</div>
+          </div>
+          <div class="cycle-step-arrow">➔</div>
+          <div class="cycle-step-item active">
+            <div class="cycle-step-num">5</div>
+            <div class="cycle-step-name">⑤ THỰC HÀNH</div>
+          </div>
+          <div class="cycle-step-arrow">➔</div>
+          <div class="cycle-step-item active">
+            <div class="cycle-step-num">6</div>
+            <div class="cycle-step-name">⑥ CHẤM RUBRIC</div>
+          </div>
+          <div class="cycle-step-arrow">➔</div>
+          <div class="cycle-step-item active">
+            <div class="cycle-step-num">7</div>
+            <div class="cycle-step-name">⑦ CHỨNG NHẬN</div>
+          </div>
+        </div>
+
+        <div class="training-layout">
+          <div class="courses-column">
+            <div class="section-filter-bar">
+              <button class="filter-chip active" data-cat="all">Tất Cả</button>
+              <button class="filter-chip" data-cat="a">A. Nền Tảng Taiiku</button>
+              <button class="filter-chip" data-cat="b">B. Vận Động Cơ Bản</button>
+              <button class="filter-chip" data-cat="c">C. Dụng Cụ Lớn (Xà)</button>
+              <button class="filter-chip" data-cat="d">D. Dụng Cụ Nhỏ</button>
+              <button class="filter-chip" data-cat="e">E. Tổ Chức Lớp</button>
+              <button class="filter-chip" data-cat="f">F. Kỹ Năng Sư Phạm</button>
+            </div>
+
+            <div class="course-cards-list" id="courses-cards-container">
+              <div class="course-card active" data-course-id="c1" data-cat="c">
+                <div class="course-badge highlight">NHÓM C: DỤNG CỤ LỚN</div>
+                <h4 class="course-title">Dạy Trẻ Treo Xà Đơn & Bục Nhảy 4 Tầng (Spotting An Toàn)</h4>
+                <p class="course-desc">Thị phạm chuẩn tư thế ngón cái ôm vòng (Thumb-around), vị trí đón hông và tiếp đất 45° giảm chấn.</p>
+                <div class="course-footer">
+                  <span>⏱️ 7 Bước Chuẩn • 40 phút</span>
+                  <span class="tag-status in-progress">Đang rèn luyện (Bước 4/7)</span>
+                </div>
+              </div>
+
+              <div class="course-card" data-course-id="c2" data-cat="a">
+                <div class="course-badge">NHÓM A: NỀN TẢNG</div>
+                <h4 class="course-title">Triết Lý Taiiku Tâm – Thân – Trí & Đặc Điểm Vận Động Trẻ 2–6T</h4>
+                <p class="course-desc">Cơ chế phát triển hệ thần kinh vận động mầm non và nguyên tắc chống chấn thương Ukemi Nhật Bản.</p>
+                <div class="course-footer">
+                  <span>⏱️ 7 Bước Chuẩn • 45 phút</span>
+                  <span class="tag-status done">Đã hoàn thành ✓</span>
+                </div>
+              </div>
+
+              <div class="course-card" data-course-id="c3" data-cat="b">
+                <div class="course-badge highlight">NHÓM B: VẬN ĐỘNG CƠ BẢN</div>
+                <h4 class="course-title">Kỹ Thuật 6 Vận Động Nền Tảng: Chạy, Nhảy, Bật, Bò, Leo, Thăng Bằng</h4>
+                <p class="course-desc">Chuẩn hóa tư thế thị phạm mẫu của giáo viên khi hướng dẫn trẻ tiếp xúc đa dạng địa hình.</p>
+                <div class="course-footer">
+                  <span>⏱️ 7 Bước Chuẩn • 50 phút</span>
+                  <span class="tag-status in-progress">Đang học (Bước 2/7)</span>
+                </div>
+              </div>
+
+              <div class="course-card" data-course-id="c4" data-cat="d">
+                <div class="course-badge">NHÓM D: DỤNG CỤ NHỎ</div>
+                <h4 class="course-title">Huấn Luyện Với Bóng Mầm Non, Rào Bật Nhảy & Thang Dây Agility</h4>
+                <p class="course-desc">Phát triển phản xạ khéo léo, khả năng phối hợp tay mắt và bước chân linh hoạt.</p>
+                <div class="course-footer">
+                  <span>⏱️ 7 Bước Chuẩn • 35 phút</span>
+                  <span class="tag-status pending">Chưa bắt đầu</span>
+                </div>
+              </div>
+
+              <div class="course-card" data-course-id="c5" data-cat="e">
+                <div class="course-badge">NHÓM E: TỔ CHỨC LỚP</div>
+                <h4 class="course-title">Bố Trí Đội Hình & Mạch Vận Động Phân Trạm Luân Phiên (Không Thời Gian Chết)</h4>
+                <p class="course-desc">Kỹ thuật điều phối nhóm đông 20-30 trẻ luân chuyển liên tục, tối ưu thời lượng vận động thực tế.</p>
+                <div class="course-footer">
+                  <span>⏱️ 7 Bước Chuẩn • 45 phút</span>
+                  <span class="tag-status in-progress">Đang học (Bước 3/7)</span>
+                </div>
+              </div>
+
+              <div class="course-card" data-course-id="c6" data-cat="f">
+                <div class="course-badge highlight">NHÓM F: KỸ NĂNG SƯ PHẠM</div>
+                <h4 class="course-title">Nghệ Thuật Khẩu Lệnh Còi Tsubasa, Thị Phạm Góc 45° & Sửa Sai Trực Tiếp</h4>
+                <p class="course-desc">Phân nhịp còi tập trung, sử dụng ngôn ngữ khích lệ và dỗ dành trẻ nhút nhát vượt qua sợ hãi.</p>
+                <div class="course-footer">
+                  <span>⏱️ 7 Bước Chuẩn • 30 phút</span>
+                  <span class="tag-status pending">Khóa học IDP đề xuất</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="player-column card">
+            <div class="video-player-container">
+              <div class="video-mock" id="video-screen">
+                <div class="video-overlay" id="video-overlay">
+                  <button class="play-big-btn" id="play-pause-btn">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  </button>
+                  <span class="video-caption-label" id="video-caption">Video Chuẩn: Kỹ thuật tiếp đất giảm chấn 45°</span>
+                </div>
+                <div class="video-controls-bottom">
+                  <div class="video-progress-line"><div class="video-progress-filled" style="width: 45%"></div></div>
+                  <div class="video-controls-row">
+                    <span class="time-label">01:48 / 04:00</span>
+                    <span class="badge-hd">HD 1080p</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="technique-checklist-box">
+              <h4 class="box-title">📋 Bộ Tiêu Chí Kỹ Thuật Bắt Buộc (Standard Checklist):</h4>
+              <ul class="checklist-items">
+                <li><span class="check-icon">✓</span> Khớp gối gập 45 độ ngay thời điểm cả 2 bàn chân chạm thảm xốp.</li>
+                <li><span class="check-icon">✓</span> Hai cánh tay duỗi thẳng song song hướng về phía trước để giữ thăng bằng trọng tâm.</li>
+                <li><span class="check-icon">✓</span> Cằm hơi gập nhẹ về ngực để phòng ngừa rung chấn đột ngột vùng cổ.</li>
+                <li><span class="check-icon">✓</span> Huấn luyện viên luôn đứng ở góc 45 độ cạnh bục, một tay sẵn sàng đỡ nách học sinh.</li>
+              </ul>
+            </div>
+
+            <div class="quiz-box">
+              <div class="quiz-header">
+                <span class="badge badge-teal">BÀI KIỂM TRA ĐẠT CHUẨN</span>
+                <span class="quiz-step">Câu hỏi 1 / 2</span>
+              </div>
+              <p class="quiz-question" id="quiz-question-text">Khi học sinh 4 tuổi thực hiện động tác nhảy từ bục gỗ xuống thảm, sai lầm nào dưới đây gây nguy cơ chấn thương khớp gối cao nhất?</p>
+              
+              <div class="quiz-options" id="quiz-options-container">
+                <label class="quiz-option" data-idx="0">
+                  <input type="radio" name="quiz_opt" value="0">
+                  <span>A. Duỗi thẳng đơ 2 chân khóa cứng khớp gối khi chạm đất</span>
+                </label>
+                <label class="quiz-option" data-idx="1">
+                  <input type="radio" name="quiz_opt" value="1">
+                  <span>B. Hạ thấp trọng tâm và gập đầu gối một góc 45 độ</span>
+                </label>
+                <label class="quiz-option" data-idx="2">
+                  <input type="radio" name="quiz_opt" value="2">
+                  <span>C. Đưa hai tay ra trước để điều chỉnh thăng bằng cơ thể</span>
+                </label>
+              </div>
+
+              <div class="quiz-actions">
+                <button class="btn btn-primary" id="submit-quiz-btn">Xác Nhận Đáp Án</button>
+                <div class="quiz-feedback-box hidden" id="quiz-feedback"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: PRACTICE SUBMISSION & AI VISION -->
+      <section class="tab-pane" id="tab-practice-upload">
+        <div class="submission-grid">
+          <div class="card upload-card">
+            <h3 class="card-title">Xem - Làm Theo - Tự Quay Video Thực Hành</h3>
+            <p class="card-subtitle">Nén tự động chuẩn H.264 và quét tư thế qua AI Computer Vision</p>
+
+            <div class="form-group">
+              <label class="form-label">Chọn Bài Tập Đang Thực Hành:</label>
+              <select class="form-select" id="practice-drill-select">
+                <option value="vault">Bật Nhảy Bục 4 Tầng & Đỡ Spotting Học Sinh</option>
+                <option value="roll">Cuộn Tròn Tiến (Forward Roll) Trên Thảm Dốc</option>
+                <option value="sprint">Chạy Đánh Tay 30m Nước Rút</option>
+                <option value="safety">Thế Ngã An Toàn Khi Trượt Chân (Ukemi)</option>
+              </select>
+            </div>
+
+            <!-- Hidden File Input for Real Device File Selection -->
+            <input type="file" id="video-file-input" accept="video/mp4,video/quicktime,video/webm,video/*" class="hidden">
+
+            <div class="dropzone" id="practice-dropzone">
+              <div class="dropzone-content" id="dropzone-default-content">
+                <div class="drop-icon">📹</div>
+                <h4>Kéo thả video bài tập hoặc bấm để chọn tệp từ máy</h4>
+                <p>Hỗ trợ MP4, MOV, WebM (Tối đa 250MB • Hệ thống tự nén H.264 tiết kiệm 75% dung lượng)</p>
+                <div class="dropzone-btns">
+                  <button type="button" class="btn btn-primary btn-sm" id="btn-select-file">📁 Chọn File Từ Máy</button>
+                  <button type="button" class="btn btn-outline btn-sm" id="btn-simulate-record">🎥 Quay Video (5s Demo)</button>
+                </div>
+              </div>
+
+              <!-- Selected File Preview Card (Hidden until file chosen) -->
+              <div class="file-chosen-box hidden" id="file-chosen-box">
+                <div class="file-icon-wrap">🎬</div>
+                <div class="file-meta-col">
+                  <div class="file-name-row">
+                    <strong class="file-name-text" id="chosen-file-name">video_thuc_hanh.mp4</strong>
+                    <span class="file-size-badge" id="chosen-file-size">48.5 MB</span>
+                  </div>
+                  <span class="file-status-text text-success">✓ Tệp video hợp lệ • Sẵn sàng nén H.264 & phân tích AI</span>
+                </div>
+                <button type="button" class="btn btn-xs btn-ghost btn-remove-file" id="btn-remove-chosen-file" title="Chọn tệp khác">✕</button>
+              </div>
+            </div>
+
+            <div class="file-action-bar hidden" id="file-action-bar">
+              <button type="button" class="btn btn-primary btn-sm" id="btn-start-process-chosen-file">⚡ Bắt Đầu Nén & Tải Lên AI Vision</button>
+            </div>
+
+            <div class="compression-status hidden" id="compression-box">
+              <div class="compression-header">
+                <span class="comp-title">Đang nén video H.264 & Tải lên Supabase Storage...</span>
+                <span class="comp-percent" id="comp-percent-label">0%</span>
+              </div>
+              <div class="progress-bar-bg"><div class="progress-bar-fill" id="comp-progress-fill" style="width: 0%"></div></div>
+              <p class="comp-note">Đã tối ưu giảm 74% dung lượng mà vẫn giữ nguyên độ nét 1080p cho AI phân tích.</p>
+            </div>
+          </div>
+
+          <div class="card ai-vision-result-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">🤖 Kết Quả Phân Tích Chuyển Động (AI Vision)</h3>
+                <p class="card-subtitle" id="ai-status-subtitle">Mô hình MediaPipe Pose Model • Quét 33 điểm mốc sinh trắc</p>
+              </div>
+              <span class="badge badge-neon" id="ai-active-badge">MediaPipe Live</span>
+            </div>
+
+            <!-- Interactive Video & Canvas AI Pose Viewport (100% Visible, No Cropping) -->
+            <div class="ai-hud-bar" id="ai-hud-bar">
+              <div class="hud-item" id="ai-badge-angle">
+                <span class="hud-dot green"></span>
+                <span class="hud-lbl">Góc Gối:</span>
+                <strong class="hud-val" id="hud-knee-val">--°</strong>
+                <span class="hud-sub">(Chuẩn: 40°-50°)</span>
+              </div>
+              <div class="hud-item" id="ai-badge-arm">
+                <span class="hud-dot blue"></span>
+                <span class="hud-lbl">Góc Tay Đón:</span>
+                <strong class="hud-val" id="hud-arm-val">--°</strong>
+                <span class="hud-sub">(Chuẩn: 90°)</span>
+              </div>
+              <div class="hud-controls" id="ai-video-controls">
+                <button type="button" class="btn btn-xs btn-outline" id="btn-toggle-ai-video">⏸ Tạm Dừng</button>
+                <button type="button" class="btn btn-xs btn-outline" id="btn-rescan-ai">🔄 Quét Lại AI</button>
+              </div>
+            </div>
+
+            <div class="ai-vision-viewport" id="ai-vision-viewport">
+              <!-- Actual user video playback with object-fit: contain (no cropping) -->
+              <video id="ai-video-element" class="ai-video-player hidden" playsinline muted loop autoplay></video>
+              
+              <!-- Fallback Simulated Background -->
+              <div class="skeleton-sim-bg" id="ai-skeleton-fallback">
+                <div class="empty-view-hint">
+                  <span class="hint-icon">📹</span>
+                  <span>Chưa có video • Hãy chọn file video từ máy bên trái để AI phân tích</span>
+                </div>
+              </div>
+
+              <!-- Pose Skeleton Drawing Canvas Overlay -->
+              <canvas id="ai-pose-canvas" class="ai-pose-canvas-overlay" width="560" height="380"></canvas>
+
+              <!-- Laser Scanning Scanner Line -->
+              <div class="laser-scanner hidden" id="laser-scanner">
+                <div class="laser-line"></div>
+                <div class="scanner-text">AI SCANNING: FRAME <span id="scan-frame-num">0</span>/120</div>
+              </div>
+            </div>
+            <!-- Dynamic Scores Breakdown -->
+            <div class="ai-score-breakdown" id="ai-metrics-container">
+              <div class="ai-metric-row">
+                <span class="metric-name" id="metric-name-1">Độ chính xác tư thế tiếp đất (Knee Flexion)</span>
+                <span class="metric-val text-success" id="metric-val-1">95 / 100</span>
+              </div>
+              <div class="ai-metric-row">
+                <span class="metric-name" id="metric-name-2">Thời điểm ra tay đỡ (Spotting timing)</span>
+                <span class="metric-val text-success" id="metric-val-2">92 / 100</span>
+              </div>
+              <div class="ai-metric-row">
+                <span class="metric-name" id="metric-name-3">Khoảng cách an toàn với bục</span>
+                <span class="metric-val text-warning" id="metric-val-3">86 / 100 (Khoảng cách 42cm)</span>
+              </div>
+            </div>
+
+            <!-- Dynamic AI Sensei Advice Quote -->
+            <div class="ai-advice-quote" id="ai-advice-container">
+              <strong>Lời khuyên từ AI Coach:</strong> "Giáo viên xử lý điểm rơi của học sinh rất chuẩn. Góc gối gập 46° triệt tiêu 85% phản lực tiếp đất. Chú ý mở rộng biên độ tay thêm 5cm để tránh va quệt khuỷu tay học sinh."
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: SAKURA KIDS MANAGER DASHBOARD -->
+      <section class="tab-pane" id="tab-manager-hub">
+        <!-- System-wide 48 Teachers Overview KPIs -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Tổng Giáo Viên Toàn Hệ Thống</span>
+              <div class="kpi-icon blue">👥</div>
+            </div>
+            <div class="kpi-val" id="mgr-teacher-count">48 Huấn Luyện Viên</div>
+            <div class="kpi-sub">4 Cơ sở Sakura Kids (SK-1, SK-2, SK-3, SK-4)</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Tỷ Lệ Đạt Chuẩn (M2 – M4)</span>
+              <div class="kpi-icon teal">🎯</div>
+            </div>
+            <div class="kpi-val text-neon">36 / 48 (75.0%)</div>
+            <div class="kpi-sub">9 đang phát triển (M1-M2) • 3 cần tái đào tạo</div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Trường Hợp Cần Hỗ Trợ Gấp (IDP)</span>
+              <div class="kpi-icon red">🚨</div>
+            </div>
+            <div class="kpi-val text-danger" id="mgr-alert-count">3 Cảnh Báo</div>
+            <div class="kpi-sub">2 hết hạn CPR • 1 quá hạn thẩm định tiết dạy</div>
+          </div>
+        </div>
+
+        <!-- 4 Facilities Breakdown (SK-1, SK-2, SK-3, SK-4) -->
+        <div class="sk-facilities-grid">
+          <div class="sk-facility-card" data-facility="SK-1">
+            <div class="sk-facility-header">
+              <span class="sk-facility-name">🏫 Cơ Sở SK-1</span>
+              <span class="badge badge-teal">12 GV</span>
+            </div>
+            <div class="sk-facility-stats">
+              <div class="sk-stat-row"><span>Đạt chuẩn (M2-M4):</span><strong class="text-success">10 GV (83%)</strong></div>
+              <div class="sk-stat-row"><span>Cần đào tạo lại:</span><strong class="text-danger">2 GV</strong></div>
+              <div class="sk-stat-row"><span>Điểm TB cơ sở:</span><strong>86.4 / 100</strong></div>
+            </div>
+          </div>
+
+          <div class="sk-facility-card" data-facility="SK-2">
+            <div class="sk-facility-header">
+              <span class="sk-facility-name">🏫 Cơ Sở SK-2</span>
+              <span class="badge badge-blue">10 GV</span>
+            </div>
+            <div class="sk-facility-stats">
+              <div class="sk-stat-row"><span>Đạt chuẩn (M2-M4):</span><strong class="text-success">8 GV (80%)</strong></div>
+              <div class="sk-stat-row"><span>Cần đào tạo lại:</span><strong class="text-danger">2 GV</strong></div>
+              <div class="sk-stat-row"><span>Điểm TB cơ sở:</span><strong>83.2 / 100</strong></div>
+            </div>
+          </div>
+
+          <div class="sk-facility-card" data-facility="SK-3">
+            <div class="sk-facility-header">
+              <span class="sk-facility-name">🏫 Cơ Sở SK-3</span>
+              <span class="badge badge-purple">13 GV</span>
+            </div>
+            <div class="sk-facility-stats">
+              <div class="sk-stat-row"><span>Đạt chuẩn (M2-M4):</span><strong class="text-success">11 GV (85%)</strong></div>
+              <div class="sk-stat-row"><span>Cần đào tạo lại:</span><strong class="text-danger">2 GV</strong></div>
+              <div class="sk-stat-row"><span>Điểm TB cơ sở:</span><strong>89.1 / 100</strong></div>
+            </div>
+          </div>
+
+          <div class="sk-facility-card" data-facility="SK-4">
+            <div class="sk-facility-header">
+              <span class="sk-facility-name">🏫 Cơ Sở SK-4</span>
+              <span class="badge badge-red">13 GV</span>
+            </div>
+            <div class="sk-facility-stats">
+              <div class="sk-stat-row"><span>Đạt chuẩn (M2-M4):</span><strong class="text-warning">7 GV (54%)</strong></div>
+              <div class="sk-stat-row"><span>Cần đào tạo lại:</span><strong class="text-danger">6 GV</strong></div>
+              <div class="sk-stat-row"><span>Điểm TB cơ sở:</span><strong>77.8 / 100</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-split-grid">
+          <div class="card alert-center-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Trung Tâm Cảnh Báo Điều Hành (Alert Center)</h3>
+                <p class="card-subtitle">Theo dõi vi phạm quy chuẩn, quá hạn thẩm định và chứng chỉ</p>
+              </div>
+              <span class="badge badge-red">Thời Gian Thực</span>
+            </div>
+
+            <div class="alerts-feed" id="alerts-container">
+              <div class="alert-box critical" data-alert-id="a1">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-body">
+                  <div class="alert-title-row">
+                    <span class="alert-title">Quá Hạn Thẩm Định Định Kỳ</span>
+                    <span class="alert-time">5 ngày trước</span>
+                  </div>
+                  <p class="alert-text">Giáo viên <strong>Haruto Sato</strong> đã quá hạn đánh giá trực tiếp module "Bật Nhảy Bục Cao".</p>
+                  <div class="alert-actions">
+                    <button class="btn btn-sm btn-primary action-btn" id="btn-alert-sched-haruto">Lên Lịch Thẩm Định</button>
+                    <button class="btn btn-sm btn-ghost action-btn resolve-btn">Đánh dấu đã giải quyết</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert-box warning" data-alert-id="a2">
+                <div class="alert-icon">⏳</div>
+                <div class="alert-body">
+                  <div class="alert-title-row">
+                    <span class="alert-title">Chứng Chỉ CPR Sắp Hết Hạn</span>
+                    <span class="alert-time">Hôm qua</span>
+                  </div>
+                  <p class="alert-text">Chứng chỉ Cấp cứu hồi sức tim phổi của <strong>Aoi Tanaka</strong> sẽ hết hiệu lực trong 12 ngày tới.</p>
+                  <div class="alert-actions">
+                    <button class="btn btn-sm btn-outline action-btn" id="btn-alert-assign-aoi">Giao Khóa Tái Đào Tạo</button>
+                    <button class="btn btn-sm btn-ghost action-btn resolve-btn">Đã duyệt gia hạn</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert-box info" data-alert-id="a3">
+                <div class="alert-icon">📉</div>
+                <div class="alert-body">
+                  <div class="alert-title-row">
+                    <span class="alert-title">Cảnh Báo Sụt Giảm Điểm Quản Lý Lớp</span>
+                    <span class="alert-time">14 giờ trước</span>
+                  </div>
+                  <p class="alert-text">Giáo viên <strong>Ren Kobayashi</strong> có điểm quản lý trật tự lớp giảm 8 điểm ở 2 buổi liên tiếp.</p>
+                  <div class="alert-actions">
+                    <button class="btn btn-sm btn-outline action-btn" id="btn-alert-guide-ren">Gửi Tài Liệu Hướng Dẫn</button>
+                    <button class="btn btn-sm btn-ghost action-btn resolve-btn">Bỏ qua</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card roster-card">
+            <div class="card-header roster-card-header">
+              <div>
+                <h3 class="card-title">Quản Lý & Đánh Giá Đội Ngũ Huấn Luyện Viên</h3>
+                <p class="card-subtitle">Theo dõi năng lực đa cụm/đa cơ sở • Chấm điểm dự giờ & đánh giá chéo</p>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-create-assessment">
+                📝 Tạo Phiếu Đánh Giá Dự Giờ
+              </button>
+            </div>
+
+            <!-- Multi-Facility Sakura Kids Filter Toolbar -->
+            <div class="roster-filter-toolbar">
+              <div class="toolbar-group">
+                <label class="toolbar-label">Cơ Sở:</label>
+                <select class="toolbar-select" id="filter-cluster-select">
+                  <option value="all">Tất Cả Cơ Sở (SK-1..SK-4)</option>
+                  <option value="SK-1" selected>Cơ Sở SK-1</option>
+                  <option value="SK-2">Cơ Sở SK-2</option>
+                  <option value="SK-3">Cơ Sở SK-3</option>
+                  <option value="SK-4">Cơ Sở SK-4</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label class="toolbar-label">Cấp Năng Lực:</label>
+                <select class="toolbar-select" id="filter-level-select">
+                  <option value="all">Tất Cả Cấp Bậc (M1 – M4)</option>
+                  <option value="M1">🌱 M1: Làm Quen</option>
+                  <option value="M2">🌿 M2: Đạt Chuẩn</option>
+                  <option value="M3">🌳 M3: Thành Thạo</option>
+                  <option value="M4">⭐ M4: Huấn Luyện Viên Mẫu</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group search-group">
+                <input type="text" class="search-input" id="teacher-search-box" placeholder="Tìm tên giáo viên...">
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="roster-table">
+                <thead>
+                  <tr>
+                    <th>Giáo Viên</th>
+                    <th>Cấp Bậc</th>
+                    <th>Điểm Index</th>
+                    <th>Phong Độ</th>
+                    <th>Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody id="teacher-table-body">
+                  <!-- Empty State Row When Search Finds Nothing -->
+                  <tr id="teacher-empty-row" class="hidden">
+                    <td colspan="5">
+                      <div class="empty-search-box">
+                        <div class="empty-search-icon">🔍</div>
+                        <h4 class="empty-search-title">Không tìm thấy huấn luyện viên nào</h4>
+                        <p class="empty-search-desc">Không có kết quả khớp với từ khóa "<span id="empty-keyword" class="highlight-kw"></span>". Hãy thử tìm theo tên giáo viên hoặc tên cơ sở (Tokyo, Shinjuku, Shibuya...).</p>
+                        <button class="btn btn-xs btn-outline" id="btn-clear-search">Xóa bộ lọc tìm kiếm</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="teacher-cell">
+                        <div class="avatar-sm">KT</div>
+                        <div>
+                          <strong>Kenji Tanaka</strong>
+                          <span class="small-sub">Tokyo Central Dojo</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-teal">🌿 Level 2 (Thực Hành)</span></td>
+                    <td><strong>88.5</strong></td>
+                    <td><span class="trend-tag success">▲ Tiến Bộ</span></td>
+                    <td><button class="btn btn-xs btn-outline" onclick="openTeacherDetails('Kenji Tanaka')">Chi Tiết</button></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="teacher-cell">
+                        <div class="avatar-sm" style="background: #e17055">HS</div>
+                        <div>
+                          <strong>Haruto Sato</strong>
+                          <span class="small-sub">Shinjuku Dojo</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-blue">🌱 Level 1 (Cơ Bản)</span></td>
+                    <td><strong>74.2</strong></td>
+                    <td><span class="trend-tag danger">▼ Cần Nhắc Nhở</span></td>
+                    <td><button class="btn btn-xs btn-outline" onclick="openTeacherDetails('Haruto Sato')">Chi Tiết</button></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="teacher-cell">
+                        <div class="avatar-sm" style="background: #6c5ce7">AT</div>
+                        <div>
+                          <strong>Aoi Tanaka</strong>
+                          <span class="small-sub">Tokyo Central Dojo</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-teal">🌿 Level 2 (Thực Hành)</span></td>
+                    <td><strong>83.0</strong></td>
+                    <td><span class="trend-tag warning">● Ổn Định</span></td>
+                    <td><button class="btn btn-xs btn-outline" onclick="openTeacherDetails('Aoi Tanaka')">Chi Tiết</button></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="teacher-cell">
+                        <div class="avatar-sm" style="background: #00cec9">RK</div>
+                        <div>
+                          <strong>Ren Kobayashi</strong>
+                          <span class="small-sub">Shibuya Center</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-purple">🌳 Level 3 (Thành Thạo)</span></td>
+                    <td><strong>92.4</strong></td>
+                    <td><span class="trend-tag success">▲ Xuất Sắc</span></td>
+                    <td><button class="btn btn-xs btn-outline" onclick="openTeacherDetails('Ren Kobayashi')">Chi Tiết</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: AI COACH CHATBOT -->
+      <section class="tab-pane" id="tab-ai-coach">
+        <div class="ai-chat-layout card">
+          <div class="chat-header">
+            <div class="chat-header-info">
+              <div class="ai-badge-avatar">🥋</div>
+              <div>
+                <h3 class="chat-title">TAIIKU SENSEI AI - Trợ Lý Sư Phạm Giáo Dục Thể Chất</h3>
+                <span class="chat-sub">Mô hình chuyên sâu theo phương pháp thể chất Nhật Bản • Hoạt động 24/7</span>
+              </div>
+            </div>
+            <div class="chat-tag">GPT-4o Domain Trained</div>
+          </div>
+
+          <div class="quick-prompts-bar">
+            <span class="quick-title">Gợi ý câu hỏi sư phạm:</span>
+            <button class="chip-btn" data-prompt="Làm thế nào để dạy trẻ 4–5 tuổi treo xà an toàn?">🧗 Dạy trẻ 4-5T treo xà</button>
+            <button class="chip-btn" data-prompt="Tạo kế hoạch đào tạo cá nhân hóa (IDP) 4 tuần cho giáo viên yếu kỹ năng tổ chức lớp">📋 Tạo kế hoạch IDP 4 tuần</button>
+            <button class="chip-btn" data-prompt="Làm sao để dỗ một bé 3 tuổi sợ không dám nhảy từ bục xuống thảm?">🧒 Bé 3 tuổi sợ nhảy</button>
+            <button class="chip-btn" data-prompt="Lớp thể dục rất ồn ào và mất trật tự, làm cách nào để ổn định lại mà không cần quát to?">📢 Lớp học hỗn loạn mất trật tự</button>
+            <button class="chip-btn" data-prompt="Checklist các vị trí tay bắt buộc khi đỡ học sinh thực hiện nhảy bục 5 tầng để tránh chấn thương cổ?">🤸‍♂️ Kỹ thuật đỡ nhảy bục 5 tầng</button>
+            <button class="chip-btn" data-prompt="Gợi ý trò chơi khởi động 7 phút tạo hứng khởi cho trẻ mầm non vào buổi sáng?">🏃 Trò chơi khởi động 7 phút</button>
+          </div>
+
+          <div class="chat-messages" id="chat-messages-container">
+            <div class="chat-msg ai-msg">
+              <div class="msg-avatar">🥋</div>
+              <div class="msg-bubble">
+                <p><strong>Konnichiwa! Tôi là Sensei AI của TAIIKU TEACHER.</strong></p>
+                <p>Tôi sẵn sàng hỗ trợ các thầy cô giải quyết các khó khăn sư phạm thực tế trên sân tập: từ việc dỗ dành học sinh nhút nhát, thiết kế bài tập phân cấp độ (micro-steps), cho đến các nguyên tắc an toàn chấn thương cột sống và cổ.</p>
+                <p>Thầy/cô đang gặp tình huống nào trong buổi học hôm nay?</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="typing-indicator hidden" id="chat-typing-indicator">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <span>Sensei AI đang phân tích chiến thuật sư phạm...</span>
+          </div>
+
+          <div class="chat-input-bar">
+            <input type="text" class="chat-input" id="chat-input-field" placeholder="Nhập câu hỏi hoặc tình huống sư phạm thể chất bạn đang gặp...">
+            <button class="btn btn-primary" id="chat-send-btn">
+              <span>Gửi</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- DIGITAL CERTIFICATE MODAL (POPUP QR CODE) -->
+  <div class="modal-backdrop hidden" id="certificate-modal">
+    <div class="certificate-card">
+      <button class="modal-close-btn" id="btn-close-cert">✕</button>
+
+      <!-- 4-Tier Certificate Switcher (M1 -> M4) -->
+      <div class="cert-tier-bar">
+        <button type="button" class="cert-tier-btn" data-cert-tier="M1">🌱 M1: Basic Coach</button>
+        <button type="button" class="cert-tier-btn" data-cert-tier="M2">🌿 M2: Qualified Coach</button>
+        <button type="button" class="cert-tier-btn active" data-cert-tier="M3">🌳 M3: Senior Coach</button>
+        <button type="button" class="cert-tier-btn" data-cert-tier="M4">⭐ M4: Master Coach</button>
+      </div>
+
+      <div class="cert-border-wrap" id="printable-certificate-area">
+        <div class="cert-header-icon">🏅</div>
+        <span class="cert-sub-top">HỆ THỐNG SK TAIIKU TEACHER ACADEMY</span>
+        <h2 class="cert-main-title">CHỨNG NHẬN NĂNG LỰC GIÁO VIÊN</h2>
+        <span class="cert-level-name">🌳 CẤP ĐỘ M3: GIÁO VIÊN THÀNH THẠO (TAIIKU SENIOR COACH)</span>
+
+        <p class="cert-body-text">
+          Chứng nhận Huấn luyện viên thể chất:
+        </p>
+        <h3 class="cert-teacher-name" id="cert-display-name">KENJI TANAKA</h3>
+        <p class="cert-body-desc">
+          Đã hoàn thành xuất sắc chu kỳ đào tạo, thẩm định 2 đợt dự giờ thực tế, đạt <strong>88.5 / 100 điểm năng lực</strong> môn Thể dục dụng cụ & Điền kinh mầm non theo phương pháp chuẩn Nhật Bản.
+        </p>
+
+        <div class="cert-footer-row">
+          <div class="cert-meta-col">
+            <div class="cert-meta-item">
+              <span class="meta-lbl">Mã Chứng Nhận:</span>
+              <span class="meta-val font-mono">SKT-2026-88204-M3</span>
+            </div>
+            <div class="cert-meta-item">
+              <span class="meta-lbl">Ngày Cấp:</span>
+              <span class="meta-val">15/09/2026</span>
+            </div>
+            <div class="cert-meta-item">
+              <span class="meta-lbl">Đơn vị thẩm định:</span>
+              <span class="meta-val">Hội Đồng Khảo Thí SK Taiiku</span>
+            </div>
+          </div>
+
+          <!-- Verified QR Code SVG -->
+          <div class="cert-qr-col">
+            <div class="qr-frame">
+              <svg viewBox="0 0 100 100" width="86" height="86">
+                <rect width="100" height="100" fill="white" rx="6"/>
+                <!-- Corner 1 -->
+                <rect x="8" y="8" width="28" height="28" fill="#0d1b2a" rx="4"/>
+                <rect x="13" y="13" width="18" height="18" fill="white"/>
+                <rect x="17" y="17" width="10" height="10" fill="#00b894"/>
+                <!-- Corner 2 -->
+                <rect x="64" y="8" width="28" height="28" fill="#0d1b2a" rx="4"/>
+                <rect x="69" y="13" width="18" height="18" fill="white"/>
+                <rect x="73" y="17" width="10" height="10" fill="#00b894"/>
+                <!-- Corner 3 -->
+                <rect x="8" y="64" width="28" height="28" fill="#0d1b2a" rx="4"/>
+                <rect x="13" y="69" width="18" height="18" fill="white"/>
+                <rect x="17" y="73" width="10" height="10" fill="#00b894"/>
+                <!-- Data blocks -->
+                <rect x="42" y="12" width="14" height="8" fill="#0d1b2a"/>
+                <rect x="42" y="26" width="8" height="12" fill="#0d1b2a"/>
+                <rect x="12" y="42" width="8" height="14" fill="#0d1b2a"/>
+                <rect x="26" y="42" width="12" height="8" fill="#0d1b2a"/>
+                <rect x="44" y="44" width="12" height="12" fill="#00b894" rx="2"/>
+                <rect x="62" y="42" width="16" height="8" fill="#0d1b2a"/>
+                <rect x="82" y="44" width="8" height="12" fill="#0d1b2a"/>
+                <rect x="42" y="62" width="8" height="14" fill="#0d1b2a"/>
+                <rect x="54" y="62" width="14" height="8" fill="#0d1b2a"/>
+                <rect x="74" y="64" width="14" height="14" fill="#0d1b2a"/>
+                <rect x="44" y="80" width="22" height="8" fill="#0d1b2a"/>
+              </svg>
+            </div>
+            <span class="qr-caption">Quét QR Xác Thực</span>
+          </div>
+        </div>
+
+        <div class="cert-actions-row">
+          <button type="button" class="btn btn-primary" id="btn-download-cert-pdf" onclick="downloadCertificatePDF()">📥 Tải Bản PDF Về Máy</button>
+          <button type="button" class="btn btn-outline" id="btn-print-cert" onclick="window.print()">🖨️ In Khổ A4 (Print)</button>
+          <button type="button" class="btn btn-ghost" id="btn-close-cert-2">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Google MediaPipe Real-Time Pose Detection SDK (100% Free & Open Source) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+  <script src="html2pdf.bundle.min.js"></script>
+  <script src="app.js"></script>
+
+  <!-- TEACHER DETAIL MODAL (XEM CHI TIẾT HUẤN LUYỆN VIÊN) -->
+  <div class="modal-backdrop hidden" id="teacher-detail-modal">
+    <div class="teacher-detail-card">
+      <button class="modal-close-btn" id="btn-close-detail-modal">✕</button>
+
+      <div class="detail-header-row">
+        <div class="detail-avatar" id="modal-t-avatar">KT</div>
+        <div class="detail-title-col">
+          <div class="detail-name-badge-row">
+            <h2 class="detail-name" id="modal-t-name">Kenji Tanaka</h2>
+            <span class="badge badge-teal" id="modal-t-level-badge">🌿 Level 2: Thực Hành</span>
+            <span class="trend-tag success" id="modal-t-trend-tag">▲ Tiến Bộ</span>
+          </div>
+          <p class="detail-sub" id="modal-t-dojo">Tokyo Central Dojo #1 • Cụm Kanto</p>
+        </div>
+        <div class="detail-score-box">
+          <span class="detail-score-val" id="modal-t-score">88.5</span>
+          <span class="detail-score-lbl">Điểm Năng Lực Index</span>
+        </div>
+      </div>
+
+      <!-- Info Meta Grid -->
+      <div class="detail-info-grid">
+        <div class="d-info-item">
+          <span class="d-lbl">Mã Giáo Viên</span>
+          <span class="d-val font-mono" id="modal-t-code">SKT-88204</span>
+        </div>
+        <div class="d-info-item">
+          <span class="d-lbl">Lớp Phụ Trách</span>
+          <span class="d-val" id="modal-t-class">Lớp Mầm 3-4T & Lớp Chồi 4-5T</span>
+        </div>
+        <div class="d-info-item">
+          <span class="d-lbl">Giờ Dạy Thực Tế</span>
+          <span class="d-val" id="modal-t-hours">340 Giờ Giảng Dạy</span>
+        </div>
+        <div class="d-info-item">
+          <span class="d-lbl">Tình Trạng CPR / Sơ Cứu</span>
+          <span class="d-val text-success" id="modal-t-cpr">Còn Hạn (140 ngày)</span>
+        </div>
+      </div>
+
+      <!-- 360 Competency Breakdown -->
+      <div class="detail-section-box">
+        <h4 class="d-sec-title">📊 Bản Đồ 5 Trục Năng Lực Cốt Lõi:</h4>
+        <div class="d-radar-bars" id="modal-t-competency-bars">
+          <!-- Bars generated via JS -->
+        </div>
+      </div>
+
+      <!-- Observation Notes & Audit Status -->
+      <div class="detail-section-box">
+        <h4 class="d-sec-title">📝 Nhận Xét Đợt Dự Giờ Gần Nhất & Khuyến Nghị:</h4>
+        <div class="d-observation-card" id="modal-t-observation">
+          "Tư thế đỡ học sinh tiếp đất 45° vững chắc. Đã cải thiện âm lượng khẩu lệnh nhưng cần tăng nhịp còi dứt khoát khi tổ chức bài tập ngoài sân cỏ."
+        </div>
+        <div class="d-obs-meta">
+          <span>Thẩm định bởi: <strong>Ban Giám Đốc Cụm Kanto</strong></span> • 
+          <span id="modal-t-obs-date">Tháng 09/2026</span>
+        </div>
+      </div>
+
+      <!-- Manager Actions Row -->
+            <!-- Observation Scheduling Panel (Interactive Calendar Form) -->
+      <div class="detail-section-box sched-panel hidden" id="modal-sched-panel">
+        <div class="sched-header-row">
+          <div>
+            <h4 class="d-sec-title">📅 Lên Lịch Dự Giờ Thẩm Định Sư Phạm</h4>
+            <p class="sched-sub">Thiết lập thời gian và nội dung để Ban Chuyên Môn đến lớp quan sát trực tiếp</p>
+          </div>
+          <span class="badge badge-teal">Khảo Thí Định Kỳ</span>
+        </div>
+
+        <div class="sched-form-grid">
+          <!-- Date Picker -->
+          <div class="form-group">
+            <label class="form-label">1. Chọn Ngày Dự Giờ:</label>
+            <input type="date" class="form-input" id="sched-date-input" value="2026-10-02">
+          </div>
+
+          <!-- Auditor Selection -->
+          <div class="form-group">
+            <label class="form-label">2. Thẩm Định Viên (Chủ Trì):</label>
+            <select class="form-select" id="sched-auditor-select">
+              <option value="Daiki Sato">Daiki Sato (Giám Đốc Cụm Kanto)</option>
+              <option value="Yuki Takahashi">Yuki Takahashi (Trưởng Ban Khảo Thí)</option>
+              <option value="Kenji Murata">Kenji Murata (Master Coach Thể Dục)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Time Slot Selection Chips -->
+        <div class="form-group">
+          <label class="form-label">3. Chọn Khung Giờ / Tiết Học:</label>
+          <div class="time-chips-row" id="time-chips-container">
+            <button type="button" class="time-chip active" data-time="08:30 - 09:15">08:30 – 09:15 (Tiết Sáng 1)</button>
+            <button type="button" class="time-chip" data-time="09:30 - 10:15">09:30 – 10:15 (Tiết Sáng 2)</button>
+            <button type="button" class="time-chip" data-time="14:30 - 15:15">14:30 – 15:15 (Tiết Chiều 1)</button>
+            <button type="button" class="time-chip" data-time="15:30 - 16:15">15:30 – 16:15 (Tiết Chiều 2)</button>
+          </div>
+        </div>
+
+        <!-- Module to Observe -->
+        <div class="form-group">
+          <label class="form-label">4. Chuyên Đề Vận Động Cần Đánh Giá:</label>
+          <select class="form-select" id="sched-module-select">
+            <option value="Bật Nhảy Bục 4 Tầng & Đỡ Spotting Học Sinh">Bật Nhảy Bục 4 Tầng & Đỡ Spotting Học Sinh (Trọng Tâm)</option>
+            <option value="Kỹ Thuật Khẩu Lệnh Còi & Phân Làn Luân Phiên">Kỹ Thuật Khẩu Lệnh Còi & Phân Làn Luân Phiên (Khắc Phục Điểm Yếu)</option>
+            <option value="Cuộn Tròn Tiến (Forward Roll) Trên Thảm Dốc">Cuộn Tròn Tiến (Forward Roll) Trên Thảm Dốc</option>
+            <option value="Điền Kinh & Phản Xạ Nhanh 30m Nước Rút">Điền Kinh & Phản Xạ Nhanh 30m Nước Rút</option>
+          </select>
+        </div>
+
+        <!-- Observation Format -->
+        <div class="form-group">
+          <label class="form-label">5. Hình Thức Quan Sát:</label>
+          <div class="sched-radio-group">
+            <label class="sched-radio-item">
+              <input type="radio" name="sched_mode" value="direct" checked>
+              <span>🏫 Trực tiếp tại sân tập cơ sở</span>
+            </label>
+            <label class="sched-radio-item">
+              <input type="radio" name="sched_mode" value="online">
+              <span>📹 Giám sát trực tuyến qua Camera Live Stream</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="form-group">
+          <label class="form-label">6. Ghi Chú & Yêu Cầu Chuẩn Bị:</label>
+          <input type="text" class="form-input" id="sched-notes-input" placeholder="Ví dụ: Nhắc giáo viên bố trí thảm xốp giảm chấn trước giờ học 15 phút...">
+        </div>
+
+        <!-- Action inside panel -->
+        <div class="sched-actions-row">
+          <button class="btn btn-primary btn-sm" id="btn-confirm-booking">✓ Xác Nhận Lên Lịch & Gửi Email Cho GV</button>
+          <button class="btn btn-ghost btn-sm" id="btn-cancel-booking">Hủy Bỏ</button>
+        </div>
+      </div>
+
+      <!-- Success Feedback Alert inside modal -->
+      <div class="sched-success-alert hidden" id="sched-success-box">
+        <div class="success-icon">🎉</div>
+        <div class="success-body">
+          <h4 class="success-title">Đã lên lịch dự giờ thành công!</h4>
+          <p class="success-desc" id="sched-success-msg">Lịch dự giờ đã được tạo và gửi thông báo đẩy đến ứng dụng của giáo viên.</p>
+        </div>
+      </div>
+
+      <div class="detail-actions-row">
+        <button class="btn btn-primary btn-sm" id="modal-btn-schedule-audit">📅 Lên Lịch Dự Giờ Tiếp Theo</button>
+        <button class="btn btn-outline btn-sm" id="modal-btn-assign-course">📚 Giao Khóa Đào Tạo Bổ Sung</button>
+        <button class="btn btn-ghost btn-sm" id="btn-close-detail-modal-2">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PHIẾU ĐÁNH GIÁ DỰ GIỜ & ĐÁNH GIÁ ĐỒNG NGHIỆP MODAL -->
+    <!-- PHIẾU ĐÁNH GIÁ TIẾT DẠY THỰC TẾ & KHUNG 6 NĂNG LỰC TAIIKU -->
+  <div class="modal-backdrop hidden" id="assessment-sheet-modal">
+    <div class="assessment-modal-card">
+      <button class="modal-close-btn" id="btn-close-assessment-modal">✕</button>
+
+      <div class="assess-header">
+        <div class="assess-icon-badge">📋</div>
+        <div>
+          <h2 class="assess-title">Phiếu Đánh Giá Tiết Dạy & Năng Lực Sư Phạm Taiiku</h2>
+          <p class="assess-sub">Khung 6 Nhóm Năng Lực Chuẩn Sakura Kids • Chấm điểm trực tiếp trên điện thoại/web</p>
+        </div>
+      </div>
+
+      <!-- Evaluation Info Meta Form -->
+      <div class="assess-meta-grid">
+        <div class="form-group">
+          <label class="form-label">1. Giáo Viên Được Đánh Giá:</label>
+          <select class="form-select" id="assess-target-teacher">
+            <option value="Kenji Tanaka">Kenji Tanaka (Cơ Sở SK-1 • M3: Thành Thạo)</option>
+            <option value="Haruto Sato">Haruto Sato (Cơ Sở SK-2 • M1: Làm Quen)</option>
+            <option value="Aoi Tanaka">Aoi Tanaka (Cơ Sở SK-1 • M2: Đạt Chuẩn)</option>
+            <option value="Ren Kobayashi">Ren Kobayashi (Cơ Sở SK-3 • M3: Thành Thạo)</option>
+            <option value="Yuto Takahashi">Yuto Takahashi (Cơ Sở SK-2 • M1: Làm Quen)</option>
+            <option value="Mei Watanabe">Mei Watanabe (Cơ Sở SK-4 • M2: Đạt Chuẩn)</option>
+            <option value="Ryota Ito">Ryota Ito (Cơ Sở SK-3 • M4: HLV Mẫu)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">2. Người Đánh Giá / Vai Trò:</label>
+          <select class="form-select" id="assess-evaluator-role">
+            <option value="Daiki Sato (Master Trainer Toàn Hệ Thống)">Daiki Sato (Master Trainer Toàn Hệ Thống)</option>
+            <option value="Nguyễn Thị Lan (Quản Lý Cơ Sở SK-1)">Nguyễn Thị Lan (Quản Lý Cơ Sở SK-1)</option>
+            <option value="Đánh Giá Chéo Đồng Nghiệp (Peer Observation)">Đánh Giá Chéo Đồng Nghiệp (Peer Observation)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">3. Tiết Dạy / Chuyên Đề Quan Sát:</label>
+          <input type="text" class="form-input" id="assess-lesson-topic" value="Kỹ Thuật Dạy Trẻ Treo Xà & Đỡ Spotting An Toàn (Lớp 4-5T)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">4. Ngày Dự Giờ & Cơ Sở:</label>
+          <input type="date" class="form-input" id="assess-date-input" value="2026-09-28">
+        </div>
+      </div>
+
+      <!-- 6-Axis Competency Sliders Section -->
+      <div class="assess-sliders-section">
+        <div class="sliders-header-row">
+          <div>
+            <h4 class="sliders-title">🎯 Đánh Giá 6 Nhóm Năng Lực Cốt Lõi (Thang 1 – 10đ):</h4>
+            <span style="font-size: 12px; color: #64748b;">M1 (1-6đ) ➔ M2 (7-8đ) ➔ M3 (8.5-9đ) ➔ M4 (9.5-10đ)</span>
+          </div>
+          <div class="live-score-preview">
+            <span>Điểm Quy Đổi:</span>
+            <strong class="live-score-val" id="assess-total-score">88 / 100</strong>
+            <span class="badge badge-purple" id="assess-grade-badge">M3 – Thành Thạo 🌳</span>
+          </div>
+        </div>
+
+        <!-- Axis 1 -->
+        <div class="slider-row">
+          <div class="slider-info">
+            <strong>📖 01. Kiến thức mầm non:</strong>
+            <span>Hiểu giáo trình Taiiku, đặc điểm tâm sinh lý vận động trẻ 2–6 tuổi</span>
+          </div>
+          <div class="slider-controls">
+            <input type="range" min="1" max="10" step="0.5" value="9" class="score-range" id="range-know">
+            <span class="range-val" id="val-know">9.0</span>
+          </div>
+        </div>
+
+        <!-- Axis 2 -->
+        <div class="slider-row">
+          <div class="slider-info">
+            <strong>🤸 02. Kỹ năng vận động chuẩn:</strong>
+            <span>Thực hiện đúng kỹ thuật nền tảng: chạy, nhảy, bật, bò, leo, xà, tiếp đất</span>
+          </div>
+          <div class="slider-controls">
+            <input type="range" min="1" max="10" step="0.5" value="9" class="score-range" id="range-tech">
+            <span class="range-val" id="val-tech">9.0</span>
+          </div>
+        </div>
+
+        <!-- Axis 3 -->
+        <div class="slider-row">
+          <div class="slider-info">
+            <strong>📢 03. Kỹ năng hướng dẫn:</strong>
+            <span>Khẩu lệnh còi dứt khoát, thị phạm góc nhìn chuẩn, sửa sai nhanh tại chỗ</span>
+          </div>
+          <div class="slider-controls">
+            <input type="range" min="1" max="10" step="0.5" value="8" class="score-range" id="range-voice">
+            <span class="range-val" id="val-voice">8.0</span>
+          </div>
+        </div>
+
+        <!-- Axis 4 -->
+        <div class="slider-row">
+          <div class="slider-info">
+            <strong>🔄 04. Tổ chức lớp & Mạch vận động:</strong>
+            <span>Đội hình, luân chuyển trạm liên tục, không để học sinh chờ đợi lâu</span>
+          </div>
+          <div class="slider-controls">
+            <input type="range" min="1" max="10" step="0.5" value="8.5" class="score-range" id="range-mgmt">
+            <span class="range-val" id="val-mgmt">8.5</span>
+          </div>
+        </div>
+
+        <!-- Axis 5 -->
+        <div class="slider-row">
+          <div class="slider-info">
+            <strong>🛡️ 05. Quy chuẩn an toàn & Spotting:</strong>
+            <span>Nhận diện rủi ro, bố trí thảm xốp, vị trí đón đỡ spotting chống rơi xà</span>
+          </div>
+          <div class="slider-controls">
+            <input type="range" min="1" max="10" step="0.5" value="9.5" class="score-range" id="range-safe">
+            <span class="range-val" id="val-safe">9.5</span>
+          </div>
+        </div>
+
+        <!-- Axis 6 -->
+        <div class="slider-row">
+          <div class="slider-info">
+            <strong>❤️ 06. Sư phạm Taiiku (Tâm – Thân – Trí):</strong>
+            <span>Tôn trọng trẻ, tạo không khí hào hứng, khích lệ trẻ nhút nhát vượt qua sợ hãi</span>
+          </div>
+          <div class="slider-controls">
+            <input type="range" min="1" max="10" step="0.5" value="9.5" class="score-range" id="range-energy">
+            <span class="range-val" id="val-energy">9.5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 Stages Field Observation Rubric (Đánh Giá 7 Giai Đoạn Tiết Học) -->
+      <div class="rubric-stages-wrapper">
+        <h4 class="sliders-title" style="margin-bottom: 8px;">👀 Rubric Đánh Giá Tiết Dạy 7 Giai Đoạn Thực Địa:</h4>
+        
+        <!-- Stage 1 -->
+        <div class="rubric-stage-box">
+          <div class="rubric-stage-title-row">
+            <span class="rubric-stage-title">① Chuẩn Bị & Dụng Cụ An Toàn:</span>
+            <span class="badge badge-teal">Thảm xốp & Khoảng cách</span>
+          </div>
+          <div class="rubric-options-grid">
+            <label class="rubric-radio-label"><input type="radio" name="stg1" value="1"><span>Chưa đạt</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg1" value="2"><span>Đạt 1 phần</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg1" value="3" checked><span>Đạt chuẩn</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg1" value="4"><span>Thành thạo</span></label>
+          </div>
+          <input type="text" class="rubric-evidence-input" placeholder="Minh chứng & nhận xét: Thảm xốp trải phẳng, xà đơn đã kiểm tra chốt an toàn trước 10 phút.">
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="rubric-stage-box">
+          <div class="rubric-stage-title-row">
+            <span class="rubric-stage-title">② Khởi Động & Thu Hút Sự Tập Trung:</span>
+            <span class="badge badge-blue">Bài hát Taiiku Warm-up</span>
+          </div>
+          <div class="rubric-options-grid">
+            <label class="rubric-radio-label"><input type="radio" name="stg2" value="1"><span>Chưa đạt</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg2" value="2"><span>Đạt 1 phần</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg2" value="3" checked><span>Đạt chuẩn</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg2" value="4"><span>Thành thạo</span></label>
+          </div>
+          <input type="text" class="rubric-evidence-input" placeholder="Minh chứng & nhận xét: Khởi động khớp cổ tay và gối rất kỹ, trẻ hào hứng theo nhịp còi.">
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="rubric-stage-box">
+          <div class="rubric-stage-title-row">
+            <span class="rubric-stage-title">③ Thị Phạm Động Tác Mẫu & Khẩu Lệnh:</span>
+            <span class="badge badge-purple">Góc quan sát 45°</span>
+          </div>
+          <div class="rubric-options-grid">
+            <label class="rubric-radio-label"><input type="radio" name="stg3" value="1"><span>Chưa đạt</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg3" value="2"><span>Đạt 1 phần</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg3" value="3" checked><span>Đạt chuẩn</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg3" value="4"><span>Thành thạo</span></label>
+          </div>
+          <input type="text" class="rubric-evidence-input" placeholder="Minh chứng: Làm mẫu cách ngón tay nắm chặt thanh xà (thump-around) rõ ràng.">
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="rubric-stage-box">
+          <div class="rubric-stage-title-row">
+            <span class="rubric-stage-title">④ Tổ Chức Phân Trạm & Mạch Vận Động:</span>
+            <span class="badge badge-teal">Không thời gian chết</span>
+          </div>
+          <div class="rubric-options-grid">
+            <label class="rubric-radio-label"><input type="radio" name="stg4" value="1"><span>Chưa đạt</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg4" value="2"><span>Đạt 1 phần</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg4" value="3" checked><span>Đạt chuẩn</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg4" value="4"><span>Thành thạo</span></label>
+          </div>
+          <input type="text" class="rubric-evidence-input" placeholder="Minh chứng: 2 học sinh cùng luân phiên, các bạn chờ được đi thảm thăng bằng hỗ trợ.">
+        </div>
+
+        <!-- Stage 5 -->
+        <div class="rubric-stage-box">
+          <div class="rubric-stage-title-row">
+            <span class="rubric-stage-title">⑤ An Toàn & Đỡ Rơi (Spotting):</span>
+            <span class="badge badge-red">Đón hông và thân trên</span>
+          </div>
+          <div class="rubric-options-grid">
+            <label class="rubric-radio-label"><input type="radio" name="stg5" value="1"><span>Chưa đạt</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg5" value="2"><span>Đạt 1 phần</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg5" value="3"><span>Đạt chuẩn</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg5" value="4" checked><span>Thành thạo</span></label>
+          </div>
+          <input type="text" class="rubric-evidence-input" placeholder="Minh chứng: Tay thầy luôn đặt áp sát hông học sinh khi buông xà, triệt tiêu nguy cơ ngã ngửa.">
+        </div>
+
+        <!-- Stage 6 -->
+        <div class="rubric-stage-box">
+          <div class="rubric-stage-title-row">
+            <span class="rubric-stage-title">⑥ Tương Tác Trẻ (Tâm – Thân – Trí):</span>
+            <span class="badge badge-purple">Khích lệ kịp thời</span>
+          </div>
+          <div class="rubric-options-grid">
+            <label class="rubric-radio-label"><input type="radio" name="stg6" value="1"><span>Chưa đạt</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg6" value="2"><span>Đạt 1 phần</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg6" value="3"><span>Đạt chuẩn</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg6" value="4" checked><span>Thành thạo</span></label>
+          </div>
+          <input type="text" class="rubric-evidence-input" placeholder="Minh chứng: Dành lời khen cụ thể cho bạn nhỏ sợ xà: 'Thầy đã đỡ chắc chắn, con rất dũng cảm!'">
+        </div>
+
+        <!-- Stage 7 -->
+        <div class="rubric-stage-box">
+          <div class="rubric-stage-title-row">
+            <span class="rubric-stage-title">⑦ Hồi Tĩnh & Nhận Xét Tiết Học:</span>
+            <span class="badge badge-teal">Thả lỏng cơ thể</span>
+          </div>
+          <div class="rubric-options-grid">
+            <label class="rubric-radio-label"><input type="radio" name="stg7" value="1"><span>Chưa đạt</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg7" value="2"><span>Đạt 1 phần</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg7" value="3" checked><span>Đạt chuẩn</span></label>
+            <label class="rubric-radio-label"><input type="radio" name="stg7" value="4"><span>Thành thạo</span></label>
+          </div>
+          <input type="text" class="rubric-evidence-input" placeholder="Minh chứng: Động tác vươn thở nhẹ nhàng, thu dọn dụng cụ cùng học sinh an toàn.">
+        </div>
+      </div>
+
+      <!-- Qualitative Feedback Inputs -->
+      <div class="assess-notes-grid" style="margin-top: 16px;">
+        <div class="form-group">
+          <label class="form-label">✨ Điểm Mạnh Nổi Bật Của Giáo Viên:</label>
+          <textarea class="form-textarea" id="assess-strength-note" rows="2" placeholder="Ví dụ: Kỹ năng đỡ spotting xà đơn tuyệt đối an toàn, năng lượng truyền cảm hứng rất tốt..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">🎯 Năng Lực Trọng Tâm Cần Đào Tạo Bổ Sung (IDP):</label>
+          <textarea class="form-textarea" id="assess-weakness-note" rows="2" placeholder="Ví dụ: Cần tăng thêm âm lượng khẩu lệnh còi và sửa sai dứt khoát hơn khi lớp phân trạm..."></textarea>
+        </div>
+      </div>
+
+      <!-- Quick Media Action Buttons -->
+      <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+        <button type="button" class="btn btn-sm btn-outline" onclick="triggerVoiceRecording()">🎙️ Ghi Âm Nhận Xét (Voice Note)</button>
+        <button type="button" class="btn btn-sm btn-outline" onclick="triggerPhotoCapture()">📷 Chụp Ảnh Minh Chứng</button>
+      </div>
+
+      <!-- Actions -->
+      <div class="assess-footer-actions">
+        <button type="button" class="btn btn-primary" id="btn-save-assessment">
+          💾 Xác Nhận & Cập Nhật Vào Hồ Sơ Năng Lực M1 – M4
+        </button>
+        <button type="button" class="btn btn-outline" id="btn-cancel-assessment">Hủy Bỏ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GIAO KHÓA ĐÀO TẠO MODAL -->
+  <div class="modal-backdrop hidden" id="assign-course-modal">
+    <div class="assign-modal-card">
+      <button class="modal-close-btn" id="btn-close-assign-modal">✕</button>
+      <div class="assess-header">
+        <div class="assess-icon-badge" style="background: rgba(59, 130, 246, 0.15); color: #2563eb;">📚</div>
+        <div>
+          <h2 class="assess-title">Giao Khóa Đào Tạo Bổ Sung</h2>
+          <p class="assess-sub">Chỉ định mô-đun bồi dưỡng chuyên môn theo lộ trình phát triển cá nhân (IDP)</p>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 14px;">
+        <label class="form-label">Giáo Viên Nhận Đào Tạo:</label>
+        <input type="text" class="form-input" id="assign-teacher-display" value="Aoi Tanaka" readonly>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Chọn Khóa Đào Tạo Bồi Dưỡng:</label>
+        <select class="form-select" id="assign-course-select">
+          <option value="cpr">Tái Cấp Chứng Chỉ: Sơ Cấp Cứu CPR & Xử Lý Chấn Thương Mầm Non (Cấp Bách)</option>
+          <option value="whistle">Chuyên Đề: Kỹ Thuật Khẩu Lệnh Còi Tsubasa & Bao Quát Lớp Sân Cỏ</option>
+          <option value="vault">Kỹ Thuật Chuyên Sâu: Nhảy Bục 5 Tầng & Đỡ Spotting An Toàn</option>
+          <option value="psych">Tâm Lý Học Vận Động: Phương Pháp Dỗ Dành Trẻ 2-3 Tuổi Sợ Độ Cao</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Thời Hạn Hoàn Thành (Deadline):</label>
+        <input type="date" class="form-input" id="assign-deadline-input" value="2026-10-15">
+      </div>
+
+      <div class="assess-footer-actions" style="margin-top: 20px;">
+        <button type="button" class="btn btn-primary btn-sm" id="btn-confirm-assign-course">✓ Giao Khóa Học & Gửi Thông Báo</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="btn-cancel-assign-course">Hủy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL ĐĂNG NHẬP / ĐỔI TÀI KHOẢN GIÁO VIÊN & HỘI ĐỒNG -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop hidden" id="login-modal">
+    <div class="login-modal-card">
+      <button class="modal-close-btn" id="btn-close-login-modal">✕</button>
+
+      <div class="login-header-banner">
+        <div class="login-brand-icon">🥋</div>
+        <h2 class="login-main-title">CỔNG ĐĂNG NHẬP GIÁO VIÊN & HỘI ĐỒNG SK TAIIKU</h2>
+        <p class="login-sub-title">Đăng nhập 1-chạm hoặc dùng Mã Giáo Viên để mở khóa hồ sơ năng lực cá nhân M1 – M4</p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="login-tabs-bar">
+        <button type="button" class="login-tab-btn active" data-login-tab="quick-teacher">⚡ Đăng Nhập 1-Chạm (Giáo Viên)</button>
+        <button type="button" class="login-tab-btn" data-login-tab="form-teacher">📝 Nhập Mã Thẻ & Mật Khẩu</button>
+        <button type="button" class="login-tab-btn" data-login-tab="staff-roles">🛡️ Cán Bộ Quản Lý & Chuyên Gia</button>
+      </div>
+
+      <!-- TAB 1: 1-CLICK QUICK TEACHER SELECTION GRID -->
+      <div class="login-tab-content" id="login-tab-quick-teacher">
+        <div style="margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <span style="font-size: 13px; color: #64748b; font-weight: 600;">Chọn tài khoản giáo viên để đăng nhập trực tiếp:</span>
+          <div style="display: flex; gap: 6px;">
+            <button type="button" class="filter-chip active" onclick="filterLoginModalTeachers('all', this)">Tất Cả</button>
+            <button type="button" class="filter-chip" onclick="filterLoginModalTeachers('SK-1', this)">Cơ Sở SK-1</button>
+            <button type="button" class="filter-chip" onclick="filterLoginModalTeachers('SK-2', this)">Cơ Sở SK-2</button>
+            <button type="button" class="filter-chip" onclick="filterLoginModalTeachers('SK-3', this)">Cơ Sở SK-3</button>
+            <button type="button" class="filter-chip" onclick="filterLoginModalTeachers('SK-4', this)">Cơ Sở SK-4</button>
+          </div>
+        </div>
+        <div class="teacher-login-grid" id="teacher-quick-login-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+
+      <!-- TAB 2: TEACHER ID & PASSWORD FORM -->
+      <div class="login-tab-content hidden" id="login-tab-form-teacher">
+        <div class="login-form-box">
+          <form id="teacher-credential-form" onsubmit="window.handleCredentialLogin(event)">
+            <div class="form-group">
+              <label class="form-label">Mã Giáo Viên Hoặc Tên Giáo Viên:</label>
+              <input type="text" class="form-input" id="login-input-id" placeholder="VD: SKT-2026-88204 hoặc Kenji Tanaka" required>
+              <span style="font-size: 11.5px; color: #64748b; margin-top: 6px; display: block;">
+                Gợi ý mã thẻ: 
+                <a href="#" onclick="document.getElementById('login-input-id').value='SKT-2026-88204'; return false;" style="color:#2563eb; font-weight:600;">SKT-2026-88204 (Cường)</a>, 
+                <a href="#" onclick="document.getElementById('login-input-id').value='SKT-2026-77102'; return false;" style="color:#2563eb; font-weight:600;">SKT-2026-77102 (Haruto)</a>, 
+                <a href="#" onclick="document.getElementById('login-input-id').value='SKT-2026-88315'; return false;" style="color:#2563eb; font-weight:600;">SKT-2026-88315 (Aoi)</a>
+              </span>
+            </div>
+            <div class="form-group" style="margin-top: 14px;">
+              <label class="form-label">Mật Khẩu:</label>
+              <input type="password" class="form-input" id="login-input-password" value="123456" placeholder="Mật khẩu mặc định: 123456" required>
+            </div>
+            <div style="margin-top: 20px;">
+              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                🚀 Đăng Nhập Vào Hệ Thống
+              </button>
+            </div>
+            <p style="font-size: 12px; color: #64748b; text-align: center; margin-top: 12px;">
+              Hệ thống tự động đồng bộ hóa toàn bộ thang 6 trụ cột năng lực, video thực hành và lộ trình IDP của giáo viên.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 3: STAFF & AUDITORS QUICK ACCESS -->
+      <div class="login-tab-content hidden" id="login-tab-staff-roles">
+        <div class="staff-login-grid">
+          <div class="staff-login-card" onclick="window.loginAsStaff('manager')">
+            <div class="staff-avatar-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;">🧑‍💼</div>
+            <div>
+              <h4 style="margin: 0; font-size: 15px; font-weight: 800; color: #0f172a;">Quản Lý Cơ Sở SK-1</h4>
+              <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Theo dõi nhân sự, cấp chứng chỉ & phân công đào tạo</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;">Vào Dashboard Quản Lý</button>
+          </div>
+
+          <div class="staff-login-card" onclick="window.loginAsStaff('trainer')">
+            <div class="staff-avatar-icon" style="background: rgba(16, 185, 129, 0.1); color: #059669;">🎓</div>
+            <div>
+              <h4 style="margin: 0; font-size: 15px; font-weight: 800; color: #0f172a;">Master Trainer Ryota Ito</h4>
+              <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Hội đồng khảo thí, dự giờ và chấm phiếu rubric 7 bước</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;">Vào Bàn Khảo Thí</button>
+          </div>
+
+          <div class="staff-login-card" onclick="window.loginAsStaff('admin')">
+            <div class="staff-avatar-icon" style="background: rgba(236, 72, 153, 0.1); color: #db2777;">👑</div>
+            <div>
+              <h4 style="margin: 0; font-size: 15px; font-weight: 800; color: #0f172a;">Super Admin Hệ Thống</h4>
+              <p style="margin: 4px 0 0 0; font-size: 12px; color: #64748b;">Cấu hình khung chuẩn Taiiku, phân quyền 4 cấp bậc</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;">Vào Quản Trị Hệ Thống</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER (Không còn nhấp nháy alert!) -->
+  <div class="toast-container" id="toast-container"></div>
+
+</body>
+</html>
